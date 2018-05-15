@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Sistema Voo - Desenvolvimento" uuid="636386b0-1a9a-4d0a-a6c9-6a0118954a60">
+    <database-info product="MySQL" version="5.5.5-10.1.21-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.45 ( Revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="sistema_voo"/>
+    <table name="aeronave" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idAeronave" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="matricula" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="va_media" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="peso_vazio" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="braco" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="momento" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="peso_max_decolagem" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="peso_max_pouso" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="combustivel_max" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="autonomia" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idAeronave"/>
+    </table>
+    <table name="habilitacao" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idHabilitacao" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Descrição" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="data_validade_habilitacao" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="ativo" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1" def="JzEn"/>
+      <column name="idTripulantes" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idHabilitacao"/>
+      <index name="idTripulantes_UNIQUE" unique="true" columns="idTripulantes"/>
+    </table>
+    <table name="parametros" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idparametros" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="valor" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="idAeronave" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idparametros"/>
+      <index name="idAeronave_UNIQUE" unique="true" columns="idAeronave"/>
+    </table>
+    <table name="parceiro" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idParceiro" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sigla" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ativo" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1" def="JzEn"/>
+      <primary-key name="PRIMARY" columns="idParceiro"/>
+    </table>
+    <table name="passageiro_voo" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idpassageiro_voo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idVoo_Pretendido" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="idPassageiros" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idpassageiro_voo"/>
+      <index name="idPassageiros_UNIQUE" unique="true" columns="idPassageiros"/>
+      <index name="idPlano_Voo_UNIQUE" unique="true" columns="idVoo_Pretendido"/>
+    </table>
+    <table name="passageiros" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idPassageiros" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="peso" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="data_nascimento" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="contato_passageiro" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="organizacao" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="idUsuario" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="dataGravacao" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="idPassageiros"/>
+    </table>
+    <table name="pista" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idPista" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="indicativo" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="coordenadas" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idPista"/>
+    </table>
+    <table name="plano_voo" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idPlano_Voo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="numero" sqlType="VARCHAR" precision="6" scale="0" nullable="true" jdbcType="12"/>
+      <column name="data" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="distancia" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="nivel" sqlType="VARCHAR" precision="6" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pob" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="pax" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="acionamento" sqlType="CHAR" precision="5" scale="0" nullable="true" jdbcType="1"/>
+      <column name="decolagem" sqlType="CHAR" precision="5" scale="0" nullable="true" jdbcType="1"/>
+      <column name="pouso" sqlType="CHAR" precision="5" scale="0" nullable="true" jdbcType="1"/>
+      <column name="corte" sqlType="CHAR" precision="5" scale="0" nullable="true" jdbcType="1"/>
+      <column name="tempo_voo" sqlType="CHAR" precision="5" scale="0" nullable="true" jdbcType="1"/>
+      <column name="eta_destino" sqlType="CHAR" precision="5" scale="0" nullable="true" jdbcType="1"/>
+      <column name="eta_tma" sqlType="CHAR" precision="5" scale="0" nullable="true" jdbcType="1"/>
+      <column name="combustivel_decolagem" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="combustivel_pouso" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="combustivel_utilizado" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="peso_combustivel" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="autonomia" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="tempo_taxi" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="knots" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="km_hora" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="origem" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="destino" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="alternativa" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="piloto" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="copiloto" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="aeronave" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idPlano_Voo"/>
+      <index name="aeronave_UNIQUE" unique="true" columns="aeronave"/>
+      <index name="alternativa_UNIQUE" unique="true" columns="alternativa"/>
+      <index name="copiloto_UNIQUE" unique="true" columns="copiloto"/>
+      <index name="destino_UNIQUE" unique="true" columns="destino"/>
+      <index name="origem_UNIQUE" unique="true" columns="origem"/>
+      <index name="piloto_UNIQUE" unique="true" columns="piloto"/>
+    </table>
+    <table name="tripulantes" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idTripulantes" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cpf" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="codigo_anac" sqlType="VARCHAR" precision="6" scale="0" nullable="true" jdbcType="12"/>
+      <column name="classe_cmda" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1" def="JzIn"/>
+      <column name="data_validade_cma" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="idTripulantes"/>
+      <index name="cpf_UNIQUE" unique="true" columns="cpf"/>
+    </table>
+    <table name="usuarios" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nome" sqlType="VARCHAR" precision="220" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="220" scale="0" nullable="false" jdbcType="12"/>
+      <column name="telefone" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="usuario" sqlType="VARCHAR" precision="220" scale="0" nullable="false" jdbcType="12"/>
+      <column name="senha" sqlType="VARCHAR" precision="220" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dataGravacao" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="voo_pretendido" schema="" catalog="sistema_voo" type="TABLE">
+      <column name="idReserva Voo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="origem" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="destino" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dataVoo" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="idUsuario" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoBagagem" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="outrosTrechos" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="dataGravacao" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="idReserva Voo"/>
+      <index name="idReserva Voo" unique="false" columns="idReserva Voo"/>
+      <index name="idReserva Voo_2" unique="false" columns="idReserva Voo"/>
+    </table>
+  </data-source>
+</component>
